@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Password!"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "EnterpriseCore"
+      MSSQL_LCID: "1049"
+      MSSQL_BACKUP_DIR: "/var/opt/mssql/backup"
+      MSSQL_DATA_DIR: "/var/opt/mssql/data"
+      MSSQL_LOG_DIR: "/var/opt/mssql/log"
+      MSSQL_AGENT_ENABLED: "true"
+    volumes:
+        - '/mnt/Data:/var/opt/mssql/data'
+        - '/mnt/Backup:/var/opt/mssql/backup'
+        - '/mnt/Log:/var/opt/mssql/log'
+    ports:
+      - "1433:1433"
